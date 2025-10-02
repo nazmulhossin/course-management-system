@@ -1,8 +1,9 @@
 "use client";
-import { LogIn, Menu, UserPlus, X } from "lucide-react";
+import { LogIn, Menu, Moon, Sun, UserPlus, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "../ui/button";
+import { ModeToggle } from "../common/ThemeToggler";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,17 +21,22 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation Menu*/}
-          <nav className="hidden lg:flex space-x-8 font-medium">
-            <Link href="/" className="hover:text-primary transition">Home</Link>
-            <Link href="#courses" className="hover:text-primary transition">Courses</Link>
-            <Link href="#why-us" className="hover:text-primary transition">Why Us</Link>
-            <Link href="#faq" className="hover:text-primary transition">FAQ</Link>
+          <nav className="hidden lg:flex space-x-8 font-medium text-textSecondary">
+            <Link href="/" className="hover:text-primary transition duration-300">Home</Link>
+            <Link href="#courses" className="hover:text-primary transition duration-300">Courses</Link>
+            <Link href="#why-us" className="hover:text-primary transition duration-300">Why Us</Link>
+            <Link href="#faq" className="hover:text-primary transition duration-300">FAQ</Link>
           </nav>
 
-          {/* Auth Buttons */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Button variant="outline"><LogIn />Login</Button>
-            <Button><UserPlus />Register</Button>
+          <div className="flex gap-4">
+            {/* Theme Toggle Button */}
+            <ModeToggle />
+
+            {/* Auth Buttons */}
+            <div className="hidden lg:flex items-center space-x-4">
+              <Link href="login"><Button variant="outline"><LogIn />Login</Button></Link>
+              <Link href="login"><Button><UserPlus />Register</Button></Link>
+            </div>
           </div>
 
           {/* Mobile Menu Show-Hide Button */}
@@ -41,12 +47,12 @@ export default function Header() {
 
         {/* Mobile Navigation Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden pb-4">
-            <nav className="flex flex-col items-center space-y-4 mb-6 font-medium">
-              <Link href="#home" className="hover:text-primary transition">Home</Link>
-              <Link href="#home" className="hover:text-primary transition">Courses</Link>
-              <Link href="#home" className="hover:text-primary transition">Why Us</Link>
-              <Link href="#home" className="hover:text-primary transition">FAQ</Link>
+          <div className="lg:hidden">
+            <nav className="flex flex-col items-center space-y-4 mb-6 font-medium text-textSecondary">
+              <Link href="#home" className="hover:text-primary transition duration-300">Home</Link>
+              <Link href="#home" className="hover:text-primary transition duration-300">Courses</Link>
+              <Link href="#home" className="hover:text-primary transition duration-300">Why Us</Link>
+              <Link href="#home" className="hover:text-primary transition duration-300">FAQ</Link>
               <Button variant="outline"><LogIn />Login</Button>
               <Button><UserPlus />Register</Button>
             </nav>

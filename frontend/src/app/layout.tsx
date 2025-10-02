@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/contexts/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
 });
-
 
 export const metadata: Metadata = {
   title: 'CPS Academy - Master Competitive Programming',
@@ -22,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
