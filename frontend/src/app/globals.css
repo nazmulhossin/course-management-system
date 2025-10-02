@@ -47,7 +47,9 @@
   --color-textPrimary: var(--textPrimary);
   --color-textSecondary: var(--textSecondary);
   --color-textTertiary: var(--textTertiary);
-  --color-borderColor: var(--borderColor)
+  --color-borderColor: var(--borderColor);
+  --color-footerBg: var(--footerBg);
+  --color-footerText: var(--footerText);
 }
 
 :root {
@@ -93,6 +95,9 @@
   --textTertiary: #718096;
 
   --borderColor: #e2e8f0;
+
+  --footerBg: #1a202c;
+  --footerText: #a0aec0;
 }
 
 .dark {
@@ -142,6 +147,9 @@
   --borderColor: #334155;
   /* --borderColor: #1d293d; */
 
+  --footerBg: #020617;
+  --footerText: #64748b;
+
 }
 
 @layer base {
@@ -151,5 +159,23 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .footer-section h4 {
+    @apply text-white mb-4 text-[1.05rem] font-semibold;
+  }
+
+  .footer-section ul li {
+    @apply mb-3;
+  }
+
+  .footer-section a {
+    @apply text-footerText no-underline transition-colors duration-300;
+  }
+
+  .footer-section a:hover {
+    @apply text-primary;
   }
 }
