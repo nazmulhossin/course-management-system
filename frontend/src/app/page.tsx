@@ -1,7 +1,10 @@
+import Header from "@/components/layout/Header";
+
 export default function Home() {
   return (
-    <main>
-      Hello CPS Academy
-    </main>
+    <div className="bg-bgPrimary text-textPrimary">
+      <Header />
+
+    </div>
   );
 }
