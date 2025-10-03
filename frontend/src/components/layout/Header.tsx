@@ -23,9 +23,8 @@ export default function Header() {
           {/* Desktop Navigation Menu*/}
           <nav className="hidden lg:flex space-x-8 font-medium text-textSecondary">
             <Link href="/" className="hover:text-primary transition duration-300">Home</Link>
-            <Link href="#courses" className="hover:text-primary transition duration-300">Courses</Link>
-            <Link href="#why-us" className="hover:text-primary transition duration-300">Why Us</Link>
-            <Link href="#faq" className="hover:text-primary transition duration-300">FAQ</Link>
+            <Link href="/courses" className="hover:text-primary transition duration-300">Courses</Link>
+            <Link href="/contact-us" className="hover:text-primary transition duration-300">Contact Us</Link>
           </nav>
 
           <div className="flex gap-4">

@@ -67,9 +67,9 @@ export default function FeaturedCourses() {
                 </div>
                 <h3 className="text-xl font-bold mb-3">{course.title}</h3>
                 <p className="text-textSecondary leading-[1.7] mb-4">{course.description}</p>
-                <div className="flex justify-between pt-4 border-t border-borderColor">
-                  <span className="flex items-center text-[0.9rem] gap-1"><Clock className="size-4" />{course.duration}</span>
-                  <Link href={`/course/${course.id}`} className="flex items-center gap-1 hover:gap-2 custom-transition text-primary font-semibold">Learn more <ArrowRight className="size-4" /></Link>
+                <div className="flex justify-between pt-4 border-t border-borderColor text-[0.9rem]">
+                  <span className="flex items-center  gap-1"><Clock className="size-4" />{course.duration}</span>
+                  <Link href={`/course/${course.id}`} className="flex items-center gap-1 hover:gap-2 custom-transition text-primary font-semibold">SEE DETAILS <ArrowRight className="size-4" /></Link>
                 </div>
               </div>
             </div>
