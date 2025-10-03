@@ -33,6 +33,8 @@
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-light: var(--accent-light);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -44,6 +46,8 @@
 
   /* custom */
   --color-bgPrimary: var(--bgPrimary);
+  --color-bgSecondary: var(--bgSecondary);
+  --color-bgTertiary: var(--bgTertiary);
   --color-textPrimary: var(--textPrimary);
   --color-textSecondary: var(--textSecondary);
   --color-textTertiary: var(--textTertiary);
@@ -61,6 +65,8 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
   --primary: #0284c7;
+  --accent-primary: #0ea5e9;
+  --accent-light: #e0f2fe;
   --primary-foreground: oklch(0.97 0.014 254.604);
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
@@ -88,6 +94,8 @@
 
   /* custom color variables  */
   --bgPrimary: #ffffff;
+  --bgSecondary: #f7fafc;
+  --bgTertiary: #e0f2fe;
 
   /* --textPrimary: #1a1a1a; */
   --textPrimary: #1e293b;
@@ -108,6 +116,7 @@
   --popover: oklch(0.21 0.006 285.885);
   --popover-foreground: oklch(0.985 0 0);
   --primary: #0284c7;
+  --accent-light: #1e3a5f;
   --primary-foreground: oklch(0.379 0.146 265.522);
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
@@ -136,6 +145,8 @@
   /* custom color variables */
   --bgPrimary: #0f172a;
   /* --bgPrimary: #0f172b; */
+  --bgSecondary: #1e293b;
+  --bgTertiary: #334155;
 
 
   --textPrimary: #f1f5f9;
@@ -162,20 +173,53 @@
   }
 }
 
+@layer utilities {
+  .custom-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .custom-transition {
+    @apply transition-all duration-300;
+  }
+
+  .bg-gradient {
+    background: linear-gradient(135deg, var(--accent-light) 0%, var(--bgTertiary) 100%);
+  }
+
+  .custom-shadow {
+    @apply shadow-[0_8px_24px_rgba(2,132,199,0.15)];
+  }
+}
+
+
 @layer components {
-  .footer-section h4 {
-    @apply text-white mb-4 text-[1.05rem] font-semibold;
+  .section-header {
+    @apply mb-12;
+
+    .section-title {
+      @apply text-3xl md:text-4xl font-bold text-textPrimary mb-3;
+    }
+
+    .section-subtitle {
+      @apply text-textSecondary text-[1.1rem];
+    }
   }
 
-  .footer-section ul li {
-    @apply mb-3;
-  }
+  .footer-section {
+    h4 {
+      @apply text-white mb-4 text-[1.05rem] font-semibold;
+    }
 
-  .footer-section a {
-    @apply text-footerText no-underline transition-colors duration-300;
-  }
+    ul li {
+      @apply mb-3;
+    }
 
-  .footer-section a:hover {
-    @apply text-primary;
+    a {
+      @apply text-footerText no-underline transition-colors duration-300;
+    }
+
+    a:hover {
+      @apply text-primary;
+    }
   }
 }

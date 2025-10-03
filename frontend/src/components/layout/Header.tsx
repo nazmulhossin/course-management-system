@@ -9,8 +9,8 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 bg-bgPrimary/80 backdrop-blur border-b border-borderColor">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+    <header className="sticky top-0 z-10 bg-bgPrimary/85 backdrop-blur border-b border-borderColor">
+      <div className="custom-container">
         <div className="flex justify-between items-center py-3">
           {/* Brand Logo */}
           <Link href="/">
