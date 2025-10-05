@@ -1,9 +1,20 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/contexts/ThemeProvider";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "CPS Academy",
-  description: "Master competitive programming with structured training programs, hands-on problem-solving sessions, and expert mentorship to build a successful career in tech.",
+  title: {
+    default: "CPS Academy - Master Competitive Programming",
+    template: "%s - CPS Academy",
+  },
+  description: "Join CPS Academy to master competitive programming with structured training programs, hands-on problem-solving sessions, and expert mentorship to build a successful career in tech.",
+  keywords: "competitive programming, coding, algorithms, data structures, programming courses",
 };
 
 export default function RootLayout({
@@ -13,8 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        {children}
+      <body className={`${inter.className} antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
