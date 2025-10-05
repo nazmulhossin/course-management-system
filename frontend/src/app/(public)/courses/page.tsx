@@ -20,7 +20,7 @@ export default async function course() {
         <h2 className="text-2xl font-bold mb-6">Live Session Courses</h2>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
           {courses.map((course) => (
-            <CourseCard course={course} maxDescriptionLength={100} />
+            <CourseCard key={course.id} course={course} maxDescriptionLength={100} />
           ))}
         </div>
       </section >
@@ -29,7 +29,7 @@ export default async function course() {
         <h2 className="text-2xl font-bold mb-6">Pre-recorded Courses</h2>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
           {courses.map((course) => (
-            <CourseCard course={course} maxDescriptionLength={100} />
+            <CourseCard key={course.id} course={course} maxDescriptionLength={100} />
           ))}
         </div>
       </section >

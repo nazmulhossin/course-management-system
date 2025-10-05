@@ -1,5 +1,5 @@
 import { FAQItem, HeroSectionData, LandingPageData, Service, Testimonial } from "@/types/landing-page";
-import { BookOpen, UserCheck, Zap, Video, Users, BriefcaseBusiness, type LucideIcon } from "lucide-react";
+import { BookOpen, UserCheck, Zap, Video, Users, BriefcaseBusiness } from "lucide-react";
 
 // Mock Data
 export const heroSectionData: HeroSectionData = {

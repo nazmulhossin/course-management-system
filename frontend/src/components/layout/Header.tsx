@@ -1,5 +1,5 @@
 "use client";
-import { LogIn, Menu, Moon, Sun, UserPlus, X } from "lucide-react";
+import { LogIn, Menu, UserPlus, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "../ui/button";
