@@ -7,7 +7,7 @@ export const mockCourses: Course[] = [
     subtitle: "Master the basics of algorithms and data structures",
     description: "Start your competitive programming journey with essential algorithms, data structures, and problem-solving techniques used in coding competitions like Codeforces, LeetCode, and CodeChef.",
     level: "Beginner",
-    thumbnail: "/courses/cp-fundamentals.jpg",
+    thumbnail: "/images/course-thumbnail-1.jpg",
     duration: "8 weeks",
 
     price: 2000,
@@ -181,7 +181,7 @@ export const mockCourses: Course[] = [
     subtitle: "Master complex algorithms and optimization techniques",
     description: "Dive deep into advanced algorithm design patterns, dynamic programming optimization, complex graph algorithms, and mathematical techniques for programming competitions.",
     level: "Advanced",
-    thumbnail: "/courses/advanced-algorithms.jpg",
+    thumbnail: "/images/course-thumbnail-2.jpg",
     duration: "12 weeks",
 
     price: 3500,
@@ -345,7 +345,7 @@ export const mockCourses: Course[] = [
     subtitle: "Leverage Python's power in coding competitions",
     description: "Learn how to effectively use Python's built-in functions, standard libraries, and unique features to solve problems quickly and efficiently in programming contests.",
     level: "Beginner",
-    thumbnail: "/courses/python-cp.jpg",
+    thumbnail: "/images/course-thumbnail-3.webp",
     duration: "6 weeks",
 
     price: 0,
@@ -503,7 +503,7 @@ export const mockCourses: Course[] = [
     subtitle: "Master advanced data structures for competitive programming",
     description: "Comprehensive coverage of advanced data structures including segment trees, Fenwick trees, tries, and advanced tree structures with practical implementation and real-world applications.",
     level: "Intermediate",
-    thumbnail: "/courses/data-structures-intensive.jpg",
+    thumbnail: "/images/course-thumbnail-3.webp",
     duration: "10 weeks",
 
     price: 2800,

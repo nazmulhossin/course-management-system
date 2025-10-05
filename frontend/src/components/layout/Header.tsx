@@ -9,7 +9,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-10 bg-bgPrimary/85 backdrop-blur border-b border-borderColor">
+    <header className="sticky top-0 z-10 bg-bgPrimary/90 backdrop-blur border-b border-borderColor">
       <div className="custom-container">
         <div className="flex justify-between items-center py-3">
           {/* Brand Logo */}
@@ -27,11 +27,11 @@ export default function Header() {
             <Link href="/contact-us" className="hover:text-primary transition duration-300">Contact Us</Link>
           </nav>
 
-          <div className="flex gap-4">
-            {/* Theme Toggle Button */}
-            <ModeToggle />
+          <div className="flex items-center gap-4">
+            <div className="hidden lg:inline-block">
+              <ModeToggle />
+            </div>
 
-            {/* Auth Buttons */}
             <div className="hidden lg:flex items-center space-x-4">
               <Link href="/login"><Button variant="outline"><LogIn />Login</Button></Link>
               <Link href="/register"><Button><UserPlus />Register</Button></Link>
@@ -39,22 +39,27 @@ export default function Header() {
           </div>
 
           {/* Mobile Menu Show-Hide Button */}
-          <button className="lg:hidden p-2 rounded-lg border border-borderColor cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
-          </button>
+          <div className="lg:hidden flex gap-6">
+            <ModeToggle />
+            <button className="p-1.5 rounded-lg border border-borderColor cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation Menu */}
         {isMenuOpen && (
           <div className="lg:hidden">
-            <nav className="flex flex-col items-center space-y-4 mb-6 font-medium text-textSecondary">
+            <nav className="flex flex-col items-center space-y-4 mb-4 font-medium text-textSecondary">
               <Link href="#home" className="hover:text-primary transition duration-300">Home</Link>
               <Link href="#home" className="hover:text-primary transition duration-300">Courses</Link>
               <Link href="#home" className="hover:text-primary transition duration-300">Why Us</Link>
               <Link href="#home" className="hover:text-primary transition duration-300">FAQ</Link>
-              <Link href="/login"><Button variant="outline"><LogIn />Login</Button></Link>
-              <Link href="/register"><Button><UserPlus />Register</Button></Link>
             </nav>
+            <div className="flex items-center justify-center gap-6 py-4 border-t">
+              <Link href="/login" className="w-[60%] md:w-[40%]"><Button variant="outline" className="w-full"><LogIn />Login</Button></Link>
+              <Link href="/register" className="w-[60%] md:w-[40%]"><Button className="w-full"><UserPlus />Register</Button></Link>
+            </div>
           </div>
         )}
       </div>

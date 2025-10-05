@@ -1,3 +1,4 @@
+import { Facebook, Linkedin, Youtube } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
@@ -10,16 +11,7 @@ export default function Footer() {
             <p>Empowering the next generation to excel in competitive programming and build successful careers in tech.</p>
           </div>
           <div className="footer-section">
-            <h4>Courses</h4>
-            <ul>
-              <li><Link href="#">Data Structures</Link></li>
-              <li><Link href="#">Algorithms</Link></li>
-              <li><Link href="#">Competitive Programming</Link></li>
-              <li><Link href="#">Interview Prep</Link></li>
-            </ul>
-          </div>
-          <div className="footer-section">
-            <h4>Resources</h4>
+            <h4>Quick Links</h4>
             <ul>
               <li><Link href="#">Practice Problems</Link></li>
               <li><Link href="#">Tutorials</Link></li>
@@ -35,6 +27,25 @@ export default function Footer() {
               <li><Link href="#">Contact</Link></li>
               <li><Link href="#">Privacy Policy</Link></li>
             </ul>
+          </div>
+          <div className="footer-section">
+            <h4>Connect</h4>
+            <div className="flex flex-col gap-1">
+              <p><span className="font-semibold">Phone:</span> 01xxxxxxxxx</p>
+              <p><span className="font-semibold">whatsapp:</span> 01xxxxxxxxx</p>
+              <p><span className="font-semibold">Email:</span> smm@cpsacademy.io</p>
+              <div className="flex gap-8 mt-2">
+                <Link href="https://www.facebook.com/bd.cpsacademy" target="_blank" className="color: var(--text-secondary); font-size: 1.25rem; transition: color 0.3s;" title="Facebook">
+                  <Facebook />
+                </Link>
+                <Link href="https://www.linkedin.com/company/cps-academy/" target="_blank" className="color: var(--text-secondary); font-size: 1.25rem; transition: color 0.3s;" title="LinkedIn">
+                  <Linkedin />
+                </Link>
+                <Link href="https://www.youtube.com/@CPSAcademy" target="_blank" className="color: var(--text-secondary); font-size: 1.25rem; transition: color 0.3s;" title="YouTube">
+                  <Youtube />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
         <div className="mt-8 pt-8 text-center border-t border-[#2d3748] text-[0.95rem]">

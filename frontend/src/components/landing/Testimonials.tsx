@@ -1,28 +1,6 @@
-const testimonials = [
-  {
-    id: '1',
-    authorName: 'Md Nazmul Hossain',
-    authorInfo: 'NCPC Regionalist, IU (CSE)',
-    authorAvatar: '',
-    testimonialText: 'CPS Academy transformed my coding skills completely. The structured curriculum and expert mentorship helped me crack interviews at top tech companies. Highly recommended!'
-  },
-  {
-    id: '2',
-    authorName: 'Sujan Roy',
-    authorInfo: 'NCPC Regionalist, IU (CSE)',
-    authorAvatar: '',
-    testimonialText: 'The live coding sessions and practice problems are incredibly valuable. I went from struggling with basic algorithms to competing in international contests within 6 months.'
-  },
-  {
-    id: '3',
-    authorName: 'Rabbani Islam Refat',
-    authorInfo: 'ICPC Asia West Finalist, AppsCode, IU (CSE)',
-    authorAvatar: '',
-    testimonialText: 'Best investment in my career! The mentors are supportive, the community is amazing, and the learning resources are top-notch. Got placed at Microsoft thanks to CPS Academy.'
-  }
-];
+import { Testimonial } from "@/types/landing-page";
 
-export default function Testimonials() {
+export default function Testimonials({ testimonials }: { testimonials: Testimonial[] }) {
   return (
     <section className="bg-bgPrimary py-16">
       <div className="custom-container">

@@ -31,7 +31,7 @@ export default function CourseHero({ course }: { course: Course }) {
 
           {/* Course Preview & Pricing Card */}
           <div className="bg-bgPrimary border border-borderColor rounded-sm overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.08)] p-1">
-            <Image src="/images/course-thumbnail.jpg" alt="Course preview" width={80} height={50} className="w-full h-[210px] object-cover rounded-sm" />
+            <Image src={course.thumbnail} alt="Course preview" width={400} height={200} className="w-full h-[210px] object-cover rounded-sm" />
             <div className="p-6">
               <div className="flex items-center justify-between mb-6">
                 <div className={`px-3 py-1 h-fit rounded-xl text-xs font-medium ${course.level === 'Beginner' ? 'bg-green-100 text-green-800' : course.level === 'Intermediate' ? 'bg-yellow-100 text-yellow-800' : 'bg-red-100 text-red-800'}`}>
