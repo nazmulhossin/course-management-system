@@ -33,8 +33,8 @@ export default function Header() {
 
             {/* Auth Buttons */}
             <div className="hidden lg:flex items-center space-x-4">
-              <Link href="login"><Button variant="outline"><LogIn />Login</Button></Link>
-              <Link href="login"><Button><UserPlus />Register</Button></Link>
+              <Link href="/login"><Button variant="outline"><LogIn />Login</Button></Link>
+              <Link href="/register"><Button><UserPlus />Register</Button></Link>
             </div>
           </div>
 
@@ -52,8 +52,8 @@ export default function Header() {
               <Link href="#home" className="hover:text-primary transition duration-300">Courses</Link>
               <Link href="#home" className="hover:text-primary transition duration-300">Why Us</Link>
               <Link href="#home" className="hover:text-primary transition duration-300">FAQ</Link>
-              <Button variant="outline"><LogIn />Login</Button>
-              <Button><UserPlus />Register</Button>
+              <Link href="/login"><Button variant="outline"><LogIn />Login</Button></Link>
+              <Link href="/register"><Button><UserPlus />Register</Button></Link>
             </nav>
           </div>
         )}
