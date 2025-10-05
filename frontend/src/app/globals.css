@@ -97,7 +97,6 @@
   --bgSecondary: #f7fafc;
   --bgTertiary: #e0f2fe;
 
-  /* --textPrimary: #1a1a1a; */
   --textPrimary: #1e293b;
   --textSecondary: #4a5568;
   --textTertiary: #718096;
@@ -144,23 +143,17 @@
 
   /* custom color variables */
   --bgPrimary: #0f172a;
-  /* --bgPrimary: #0f172b; */
   --bgSecondary: #1e293b;
   --bgTertiary: #334155;
-
 
   --textPrimary: #f1f5f9;
   --textSecondary: #cbd5e1;
   --textTertiary: #94a3b8;
 
-
-
   --borderColor: #334155;
-  /* --borderColor: #1d293d; */
 
   --footerBg: #020617;
   --footerText: #64748b;
-
 }
 
 @layer base {
@@ -191,7 +184,6 @@
   }
 }
 
-
 @layer components {
   .section-header {
     @apply mb-12;
@@ -202,6 +194,22 @@
 
     .section-subtitle {
       @apply text-textSecondary text-[1.1rem];
+    }
+  }
+
+  .course-details-section {
+    @apply bg-bgPrimary border border-borderColor rounded-2xl p-8;
+
+    h2 {
+      @apply text-[1.7rem] font-bold mb-6;
+    }
+  }
+
+  .course-sidebar-section {
+    @apply bg-bgPrimary border border-borderColor rounded-2xl p-7 mb-6;
+
+    h3 {
+      @apply text-xl font-bold mb-4;
     }
   }
 

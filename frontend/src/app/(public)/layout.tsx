@@ -10,7 +10,7 @@ export default function PublicLayout({
   return (
     <div className="bg-bgPrimary text-textPrimary">
       <Header />
-      <main className="min-h-screen py-12">{children}</main>
+      <main className="min-h-screen">{children}</main>
       <Footer />
     </div>
   )
