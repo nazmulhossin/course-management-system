@@ -9,6 +9,7 @@ import { getLandingPageData } from "@/lib/api/landing-page";
 
 export default async function Home() {
   const landingData = await getLandingPageData();
+  console.log(landingData);
 
   return (
     <div className="bg-bgPrimary text-textPrimary">

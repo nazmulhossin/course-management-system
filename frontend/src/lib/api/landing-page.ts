@@ -1,125 +1,126 @@
-import { FAQItem, HeroSectionData, LandingPageData, Service, Testimonial } from "@/types/landing-page";
-import { BookOpen, UserCheck, Zap, Video, Users, BriefcaseBusiness } from "lucide-react";
+import { getStrapiMediaUrl } from '../utils/urlHandler';
+import { strapiClient } from './client';
+import { 
+  StrapiResponse, 
+  StrapiLandingPage, 
+  LandingPageData, 
+  HeroSectionData, 
+  Service, 
+  Testimonial, 
+  FAQItem 
+} from '@/types/landing-page';
 
-// Mock Data
-export const heroSectionData: HeroSectionData = {
+export async function getLandingPageData(): Promise<LandingPageData> {
+  const response = await strapiClient.get<StrapiResponse<StrapiLandingPage>>(
+    '/api/landing-page?populate=deep'
+  );
+
+  return transformLandingPageData(response.data);
+}
+
+// Transformer functions
+const transformLandingPageData = (strapiData: StrapiLandingPage): LandingPageData => {
+  const heroBlock = strapiData.blocks.find(block => block.__component === 'blocks.hero') as any;
+  const servicesBlock = strapiData.blocks.find(block => block.__component === 'blocks.services') as any;
+  const testimonialsBlock = strapiData.blocks.find(block => block.__component === 'blocks.testimonials') as any;
+  const faqsBlock = strapiData.blocks.find(block => block.__component === 'blocks.fa-qs') as any;
+
+  return {
+    heroSectionData: transformHeroBlock(heroBlock),
+    services: transformServicesBlock(servicesBlock),
+    testimonials: transformTestimonialsBlock(testimonialsBlock),
+    faqs: transformFAQsBlock(faqsBlock),
+  };
+};
+
+const transformHeroBlock = (heroBlock: any): HeroSectionData => {
+  if (!heroBlock) {
+    return getDefaultHeroData();
+  }
+
+  const primaryButton = heroBlock.buttons?.find((btn: any) => btn.type === 'PRIMARY');
+  const secondaryButton = heroBlock.buttons?.find((btn: any) => btn.type === 'SECONDARY');
+
+  return {
+    badge: heroBlock.badge || '',
+    title: {
+      text: heroBlock.title?.text || '',
+      highlightText: heroBlock.title?.highlightText || '',
+    },
+    description: heroBlock.description || '',
+    buttons: {
+      primary: {
+        label: primaryButton?.Label || 'Explore Courses',
+        href: primaryButton?.href || '/courses',
+      },
+      secondary: {
+        label: secondaryButton?.Label || 'Join Community',
+        href: secondaryButton?.href || '#',
+      },
+    },
+    image: {
+      src: getStrapiMediaUrl(heroBlock.image?.url),
+      alt: heroBlock.image?.alternativeText || '',
+    },
+  };
+};
+
+const transformServicesBlock = (servicesBlock: any): Service[] => {
+  if (!servicesBlock?.services) {
+    return [];
+  }
+
+  return servicesBlock.services.map((service: any) => ({
+    id: service.id,
+    title: service.title,
+    description: service.description,
+    iconName: service.iconName,
+  }));
+};
+
+const transformTestimonialsBlock = (testimonialsBlock: any): Testimonial[] => {
+  if (!testimonialsBlock?.testimonials) {
+    return [];
+  }
+
+  return testimonialsBlock.testimonials.map((testimonial: any) => ({
+    id: testimonial.id,
+    authorName: testimonial.name,
+    authorInfo: testimonial.bio,
+    testimonialText: testimonial.quote,
+    avatar: testimonial.avatar ? {
+      src: getStrapiMediaUrl(testimonial.avatar.url),
+      alt: testimonial.avatar.alternativeText || `${testimonial.name} avatar`,
+    } : undefined,
+  }));
+};
+
+const transformFAQsBlock = (faqsBlock: any): FAQItem[] => {
+  if (!faqsBlock?.faqs) {
+    return [];
+  }
+
+  return faqsBlock.faqs.map((faq: any) => ({
+    id: faq.id,
+    question: faq.question,
+    answer: faq.answer,
+  }));
+};
+
+// Fallback data in case API fails
+const getDefaultHeroData = (): HeroSectionData => ({
   badge: "Learn. Practice. Excel.",
   title: {
     text: "Your success, our priority —",
-    highlightText: "CPS Academy",
+    highlightText: "CPS Academy"
   },
   description: "Master competitive programming with structured training programs, hands-on problem-solving sessions, and expert mentorship to build a successful career in tech.",
   buttons: {
-    primary: {
-      label: "Explore Courses",
-      href: "/courses",
-    },
-    secondary: {
-      label: "Join Community",
-      href: "https://www.facebook.com/bd.cpsacademy",
-    },
+    primary: { label: "Explore Courses", href: "/courses" },
+    secondary: { label: "Join Community", href: "https://www.facebook.com/bd.cpsacademy" }
   },
   image: {
     src: "/images/competitive-programming-banner.png",
-    alt: "Competitive Programming Banner",
-  },
-};
-
-const services: Service[] = [
-  {
-    icon: BookOpen,
-    title: "Structured Curriculum",
-    description: "Follow a carefully designed curriculum that takes you from basics to advanced concepts systematically"
-  },
-  {
-    icon: UserCheck,
-    title: "Expert Mentorship",
-    description: "Learn from experienced competitive programmers who have achieved success in major competitions"
-  },
-  {
-    icon: Zap,
-    title: "Hands-on Practice",
-    description: "Solve hundreds of curated problems with detailed explanations and multiple approaches"
-  },
-  {
-    icon: Video,
-    title: "Live Coding Sessions",
-    description: "Participate in interactive problem-solving sessions and learn techniques used by top competitive programmers."
-  },
-  {
-    icon: Users,
-    title: "Community Support",
-    description: "Join a vibrant community of learners, share knowledge, and grow together with peer support."
-  },
-  {
-    icon: BriefcaseBusiness,
-    title: "Career Guidance",
-    description: "Receive guidance on interview preparation and career opportunities in tech industry"
-  },
-];
-
-const testimonials: Testimonial[] = [
-  {
-    id: "1",
-    authorName: "Md Nazmul Hossain",
-    authorInfo: "NCPC Regionalist, IU (CSE)",
-    authorAvatar: "",
-    testimonialText: "CPS Academy transformed my coding skills completely. The structured curriculum and expert mentorship helped me crack interviews at top tech companies. Highly recommended!"
-  },
-  {
-    id: "2",
-    authorName: "Sujan Roy",
-    authorInfo: "NCPC Regionalist, IU (CSE)",
-    authorAvatar: "",
-    testimonialText: "The live coding sessions and practice problems are incredibly valuable. I went from struggling with basic algorithms to competing in international contests within 6 months."
-  },
-  {
-    id: "3",
-    authorName: "Rabbani Islam Refat",
-    authorInfo: "ICPC Asia West Finalist, AppsCode, IU (CSE)",
-    authorAvatar: "",
-    testimonialText: "Best investment in my career! The mentors are supportive, the community is amazing, and the learning resources are top-notch. Got placed at Microsoft thanks to CPS Academy."
+    alt: "competitive-programming-banner"
   }
-];
-
-const faqs: FAQItem[] = [
-  {
-    id: "1",
-    question: "Do I need prior programming experience to start?",
-    answer: "No prior experience is required for our beginner courses. We start from the very basics and gradually progress to advanced topics. Our curriculum is designed to accommodate complete beginners while also challenging experienced programmers.",
-  },
-  {
-    id: "2",
-    question: "What programming languages do you teach?",
-    answer: "We primarily focus on C++ and Python for competitive programming as they are the most commonly used languages in competitions. However, we also provide guidance on Java and other languages based on student preferences and requirements.",
-  },
-  {
-    id: "3",
-    question: "How much time should I dedicate weekly?",
-    answer: "We recommend dedicating 8-12 hours per week for optimal progress. This includes watching video lectures, solving practice problems, and participating in coding contests. However, you can learn at your own pace with our flexible schedule.",
-  },
-  {
-    id: "4",
-    question: "Do you provide certificate upon completion?",
-    answer: "Yes, we provide certificates of completion for all paid courses. These certificates can be shared on LinkedIn and other professional platforms. For free courses, you can request a certificate for a small fee.",
-  },
-  {
-    id: "5",
-    question: "What kind of support do you offer?",
-    answer: "We provide multiple support channels including dedicated Discord community, mentor support, code reviews, and regular doubt-clearing sessions. Our mentors are available to help you with technical challenges and career guidance.",
-  },
-  {
-    id: "6",
-    question: "Can I get a refund if I am not satisfied?",
-    answer: "Yes, we offer a 30-day money-back guarantee for all our paid courses. If you are not satisfied with the course content or teaching methodology, you can request a full refund within 30 days of enrollment.",
-  },
-];
-
-export const getLandingPageData = (): LandingPageData => {
-  return {
-    heroSectionData,
-    services,
-    testimonials,
-    faqs
-  };
-};
+});
