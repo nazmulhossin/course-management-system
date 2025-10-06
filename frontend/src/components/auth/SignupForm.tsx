@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -15,11 +17,27 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
+import { actions } from "@/data/actions";
+import { FormState } from "@/data/validation/auth";
+import { useActionState } from "react";
+import { ZodErrors } from "../custom/zod-errors";
+
+const INITIAL_STATE: FormState = {
+  success: false,
+  message: undefined,
+  strapiErrors: null,
+  zodErrors: null,
+};
 
 export function SignupForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const [formState, formAction] = useActionState(
+    actions.auth.registerUserAction,
+    INITIAL_STATE
+  );
+
   return (
     <div className={cn("flex flex-col gap-6 my-4", className)} {...props}>
       <Card className="bg-bgPrimary text-textPrimary sm:w-105 md:w-110">
@@ -30,38 +48,43 @@ export function SignupForm({
           </p>
         </CardHeader>
         <CardContent>
-          <form>
+          <form action={formAction}>
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="name">Full Name</FieldLabel>
-                <Input id="name" type="text" placeholder="John Doe" required />
+                <Input id="name" type="text" name="identifier" placeholder="John Doe" defaultValue={formState?.data?.identifier || ""} required />
               </Field>
+              <ZodErrors error={formState?.zodErrors?.identifier} />
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
                   id="email"
                   type="email"
+                  name="email"
                   placeholder="m@example.com"
+                  defaultValue={formState?.data?.email || ""}
                   required
                 />
               </Field>
+              <ZodErrors error={formState?.zodErrors?.email} />
               <Field>
                 <Field className="grid grid-cols-2 gap-4">
                   <Field>
                     <FieldLabel htmlFor="password">Password</FieldLabel>
-                    <Input id="password" type="password" required />
+                    <Input id="password" type="password" name="password" defaultValue={formState?.data?.password || ""} required />
                   </Field>
                   <Field>
                     <FieldLabel htmlFor="confirm-password">
                       Confirm Password
                     </FieldLabel>
-                    <Input id="confirm-password" type="password" required />
+                    <Input id="confirm-password" type="password" name="confirm-password" required />
                   </Field>
                 </Field>
                 <FieldDescription>
                   Must be at least 8 characters long.
                 </FieldDescription>
               </Field>
+              <ZodErrors error={formState?.zodErrors?.password} />
               <Field>
                 <Button type="submit">Create Account</Button>
               </Field>
